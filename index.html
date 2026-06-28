@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Western Integrity Inspection Inc</title>
+    <link rel="icon" type="image/png" href="assets/western-integrity-logo.png" />
+    <meta
+      name="description"
+      content="Western Integrity Inspection Inc provides careful, practical inspection support for commercial, industrial, and property assets."
+    />
+    <style>
+      :root {
+        --ink: #152027;
+        --muted: #58656c;
+        --line: #d8dee2;
+        --paper: #f6f7f4;
+        --white: #ffffff;
+        --steel: #33414a;
+        --gold: #d6a531;
+        --green: #2c6657;
+        --blue: #2d5f7b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--paper);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 18px clamp(20px, 5vw, 64px);
+        background: rgba(246, 247, 244, 0.93);
+        border-bottom: 1px solid rgba(21, 32, 39, 0.08);
+        backdrop-filter: blur(14px);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .brand-logo {
+        width: 54px;
+        height: 54px;
+        object-fit: contain;
+        border-radius: 50%;
+        filter: drop-shadow(0 2px 4px rgba(21, 32, 39, 0.18));
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: clamp(14px, 3vw, 30px);
+        color: var(--steel);
+        font-size: 0.94rem;
+        font-weight: 650;
+      }
+
+      .nav a {
+        padding: 6px 0;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 18px;
+        border: 1px solid var(--ink);
+        border-radius: 6px;
+        background: var(--ink);
+        color: var(--white);
+        cursor: pointer;
+        font: inherit;
+        font-weight: 750;
+        white-space: nowrap;
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--ink);
+      }
+
+      .hero {
+        position: relative;
+        min-height: min(640px, calc(100vh - 104px));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        padding: clamp(40px, 5vw, 60px) clamp(20px, 5vw, 64px);
+        overflow: hidden;
+        color: var(--white);
+      }
+
+      .hero::before {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background:
+          linear-gradient(90deg, rgba(8, 18, 24, 0.88) 0%, rgba(8, 18, 24, 0.76) 34%, rgba(8, 18, 24, 0.28) 70%),
+          linear-gradient(180deg, rgba(8, 18, 24, 0.2), rgba(8, 18, 24, 0.62)),
+          url("assets/inspection-hero.png") center / cover no-repeat;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        width: min(720px, 100%);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 18px;
+        color: #f5d477;
+        font-size: 0.84rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 42px;
+        height: 2px;
+        background: currentColor;
+        content: "";
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(3rem, 7vw, 5.75rem);
+        line-height: 0.94;
+        letter-spacing: 0;
+      }
+
+      .hero-copy {
+        max-width: 610px;
+        margin: 24px 0 0;
+        color: rgba(255, 255, 255, 0.88);
+        font-size: clamp(1.05rem, 2vw, 1.28rem);
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 32px;
+      }
+
+      .hero .button.secondary {
+        border-color: rgba(255, 255, 255, 0.65);
+        color: var(--white);
+      }
+
+      .hero-strip {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        width: 100%;
+        margin-top: clamp(24px, 4vh, 38px);
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      .strip-item {
+        min-height: 86px;
+        padding: 18px;
+        background: rgba(8, 18, 24, 0.58);
+      }
+
+      .strip-item strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--white);
+        font-size: 1.02rem;
+      }
+
+      .strip-item span {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.92rem;
+      }
+
+      main {
+        background: var(--paper);
+      }
+
+      section {
+        padding: clamp(56px, 8vw, 92px) clamp(20px, 5vw, 64px);
+      }
+
+      .section-inner {
+        width: min(1160px, 100%);
+        margin: 0 auto;
+      }
+
+      .section-heading {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(280px, 1fr);
+        gap: clamp(28px, 6vw, 72px);
+        align-items: end;
+        margin-bottom: 36px;
+      }
+
+      h2 {
+        margin: 0;
+        color: var(--ink);
+        font-size: clamp(2rem, 4.5vw, 4rem);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .services {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .service {
+        min-height: 260px;
+        padding: 28px;
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .service b {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        margin-bottom: 42px;
+        border-radius: 6px;
+        background: #e9f0ec;
+        color: var(--green);
+        font-size: 1.1rem;
+      }
+
+      .service h3,
+      .process h3 {
+        margin: 0 0 10px;
+        color: var(--ink);
+        font-size: 1.22rem;
+        line-height: 1.2;
+      }
+
+      .service p,
+      .process p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .confidence {
+        background: var(--white);
+        border-block: 1px solid var(--line);
+      }
+
+      .confidence-grid {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: clamp(32px, 7vw, 84px);
+        align-items: center;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .metric {
+        min-height: 150px;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfbf8;
+      }
+
+      .metric strong {
+        display: block;
+        color: var(--green);
+        font-size: clamp(2rem, 5vw, 3.25rem);
+        line-height: 1;
+      }
+
+      .metric span {
+        display: block;
+        margin-top: 12px;
+        color: var(--muted);
+        font-weight: 650;
+      }
+
+      .process-list {
+        display: grid;
+        gap: 18px;
+      }
+
+      .process {
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .process-number {
+        display: grid;
+        width: 48px;
+        height: 48px;
+        place-items: center;
+        border-radius: 6px;
+        background: var(--ink);
+        color: var(--white);
+        font-weight: 850;
+      }
+
+      .cta {
+        background: var(--steel);
+        color: var(--white);
+      }
+
+      .cta .section-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .cta h2,
+      .cta p {
+        color: var(--white);
+      }
+
+      .cta p {
+        max-width: 650px;
+        margin: 16px 0 0;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .contact-actions {
+        display: grid;
+        gap: 12px;
+      }
+
+      .modal {
+        width: min(720px, calc(100vw - 32px));
+        max-height: min(820px, calc(100vh - 32px));
+        padding: 0;
+        overflow: hidden;
+        color: var(--ink);
+        background: var(--white);
+        border: 1px solid rgba(21, 32, 39, 0.16);
+        border-radius: 8px;
+        box-shadow: 0 28px 80px rgba(8, 18, 24, 0.32);
+      }
+
+      .modal::backdrop {
+        background: rgba(8, 18, 24, 0.62);
+        backdrop-filter: blur(4px);
+      }
+
+      .modal-shell {
+        max-height: inherit;
+        overflow: auto;
+      }
+
+      .modal-header {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 26px 28px 20px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .modal-header h2 {
+        font-size: clamp(1.65rem, 4vw, 2.4rem);
+      }
+
+      .modal-header p {
+        margin: 8px 0 0;
+        color: var(--muted);
+      }
+
+      .icon-button {
+        display: grid;
+        flex: 0 0 auto;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--paper);
+        color: var(--ink);
+        cursor: pointer;
+        font: inherit;
+        font-size: 1.45rem;
+        line-height: 1;
+      }
+
+      .inspection-form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        padding: 24px 28px 28px;
+      }
+
+      .field {
+        display: grid;
+        gap: 7px;
+      }
+
+      .field.full {
+        grid-column: 1 / -1;
+      }
+
+      .field label {
+        color: var(--steel);
+        font-size: 0.88rem;
+        font-weight: 750;
+      }
+
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        min-height: 46px;
+        padding: 11px 12px;
+        color: var(--ink);
+        background: #fbfbf8;
+        border: 1px solid #cbd3d8;
+        border-radius: 6px;
+        font: inherit;
+      }
+
+      .field textarea {
+        min-height: 112px;
+        resize: vertical;
+      }
+
+      .form-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+        justify-content: space-between;
+        grid-column: 1 / -1;
+        margin-top: 6px;
+      }
+
+      .form-note {
+        max-width: 380px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 28px clamp(20px, 5vw, 64px);
+        color: #657178;
+        background: #111a20;
+        font-size: 0.94rem;
+      }
+
+      @media (max-width: 880px) {
+        .site-header {
+          position: static;
+          align-items: flex-start;
+        }
+
+        .nav {
+          display: none;
+        }
+
+        .hero {
+          min-height: min(640px, calc(100vh - 96px));
+          align-items: start;
+          padding-top: 72px;
+          padding-bottom: 24px;
+        }
+
+        .hero::before {
+          background:
+            linear-gradient(180deg, rgba(8, 18, 24, 0.9) 0%, rgba(8, 18, 24, 0.74) 52%, rgba(8, 18, 24, 0.38) 100%),
+            url("assets/inspection-hero.png") center / cover no-repeat;
+        }
+
+        .section-heading,
+        .confidence-grid,
+        .cta .section-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-strip {
+          display: none;
+        }
+
+        .services {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .site-header {
+          padding-block: 14px;
+        }
+
+      .brand {
+          max-width: 300px;
+        }
+
+        .brand-logo {
+          width: 48px;
+          height: 48px;
+        }
+
+        h1 {
+          font-size: clamp(2.5rem, 15vw, 4.25rem);
+        }
+
+        .hero-actions,
+        .cta .button {
+          width: 100%;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .modal-header,
+        .inspection-form {
+          padding-inline: 18px;
+        }
+
+        .inspection-form {
+          grid-template-columns: 1fr;
+        }
+
+        .form-actions {
+          align-items: stretch;
+        }
+
+        .hero-strip,
+        .metrics {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Western Integrity Inspection Inc home">
+        <img class="brand-logo" src="assets/western-integrity-logo.png" alt="" />
+        <span>Western Integrity Inspection Inc</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#approach">Approach</a>
+        <a href="#contact">Contact</a>
+        <button class="button" type="button" data-open-request>Request Inspection</button>
+      </nav>
+    </header>
+
+    <section class="hero" id="top">
+      <div class="hero-content">
+        <p class="eyebrow">Western Integrity Inspection Inc</p>
+        <h1>Practical inspections with clear answers.</h1>
+        <p class="hero-copy">
+          Independent inspection support for property owners, builders, facility teams, and decision makers who need findings they can act on.
+        </p>
+        <div class="hero-actions" aria-label="Primary calls to action">
+          <button class="button" type="button" data-open-request>Book an inspection</button>
+          <a class="button secondary" href="#services">View services</a>
+        </div>
+      </div>
+
+      <div class="hero-strip" aria-label="Inspection focus areas">
+        <div class="strip-item">
+          <strong>Property condition</strong>
+          <span>Documented observations before purchase, repair, or turnover.</span>
+        </div>
+        <div class="strip-item">
+          <strong>Commercial assets</strong>
+          <span>Building systems, site conditions, and maintenance priorities.</span>
+        </div>
+        <div class="strip-item">
+          <strong>Clear reporting</strong>
+          <span>Plain-language findings with photos, notes, and next steps.</span>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section id="services">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2>Inspection services built around real decisions.</h2>
+            <p class="lead">
+              Western Integrity Inspection Inc helps clients understand current conditions, reduce uncertainty, and prioritize work with grounded field observations.
+            </p>
+          </div>
+
+          <div class="services">
+            <article class="service">
+              <b aria-hidden="true">01</b>
+              <h3>Pre-purchase inspections</h3>
+              <p>Walkthroughs and reporting for buyers, owners, and operators evaluating residential or commercial property.</p>
+            </article>
+            <article class="service">
+              <b aria-hidden="true">02</b>
+              <h3>Commercial condition reviews</h3>
+              <p>Visual reviews of building envelope, site, mechanical, electrical, and safety-related conditions.</p>
+            </article>
+            <article class="service">
+              <b aria-hidden="true">03</b>
+              <h3>Maintenance documentation</h3>
+              <p>Photo-backed notes and practical repair priorities for teams planning budgets, handoffs, or remediation.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="confidence" id="approach">
+        <div class="section-inner confidence-grid">
+          <div>
+            <h2>Measured, direct, and documented.</h2>
+            <p class="lead">
+              Every inspection is treated as a decision-support document: what was seen, what it means, and what should happen next.
+            </p>
+          </div>
+
+          <div class="process-list">
+            <article class="process">
+              <span class="process-number">1</span>
+              <div>
+                <h3>Scope the need</h3>
+                <p>Confirm the property type, timeline, access points, and the decisions the inspection needs to support.</p>
+              </div>
+            </article>
+            <article class="process">
+              <span class="process-number">2</span>
+              <div>
+                <h3>Inspect and record</h3>
+                <p>Complete a practical visual review with photos, field notes, and attention to visible risk indicators.</p>
+              </div>
+            </article>
+            <article class="process">
+              <span class="process-number">3</span>
+              <div>
+                <h3>Report clearly</h3>
+                <p>Deliver organized findings that make priorities, limitations, and recommended next steps easy to understand.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-inner">
+          <div class="metrics" aria-label="Company qualities">
+            <div class="metric">
+              <strong>Field</strong>
+              <span>On-site observations, photos, and condition notes.</span>
+            </div>
+            <div class="metric">
+              <strong>Plain</strong>
+              <span>Clear reporting without vague or inflated language.</span>
+            </div>
+            <div class="metric">
+              <strong>Practical</strong>
+              <span>Findings framed around repair, risk, and planning decisions.</span>
+            </div>
+            <div class="metric">
+              <strong>Local</strong>
+              <span>Responsive service for western-region property and facility needs.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" id="contact">
+        <div class="section-inner">
+          <div>
+            <h2>Need an inspection report you can use?</h2>
+            <p>
+              Share the property type, location, timeline, and what you need to decide. Western Integrity Inspection Inc will follow up with next steps.
+            </p>
+          </div>
+          <div class="contact-actions" aria-label="Contact details">
+            <a class="button" href="mailto:info.wiinspections@gmail.com">info.wiinspections@gmail.com</a>
+            <a class="button secondary" href="tel:5195808315">Cell: 519-580-8315</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Western Integrity Inspection Inc</span>
+      <span>Property and commercial inspection support</span>
+    </footer>
+
+    <dialog class="modal" id="inspection-request-modal" aria-labelledby="inspection-request-title">
+      <div class="modal-shell">
+        <div class="modal-header">
+          <div>
+            <h2 id="inspection-request-title">Request Inspection</h2>
+            <p>Send the details and Western Integrity Inspection Inc will follow up.</p>
+          </div>
+          <button class="icon-button" type="button" data-close-request aria-label="Close request form">&times;</button>
+        </div>
+
+        <form class="inspection-form" id="inspection-request-form">
+          <div class="field">
+            <label for="request-name">Name</label>
+            <input id="request-name" name="name" autocomplete="name" required />
+          </div>
+
+          <div class="field">
+            <label for="request-organization">Organization</label>
+            <input id="request-organization" name="organization" autocomplete="organization" />
+          </div>
+
+          <div class="field">
+            <label for="request-email">Email</label>
+            <input id="request-email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div class="field">
+            <label for="request-phone">Contact Number</label>
+            <input id="request-phone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+
+          <div class="field full">
+            <label for="request-description">Description</label>
+            <textarea id="request-description" name="description" required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <p class="form-note">Western Integrity Inspection Inc will review your request and follow up.</p>
+            <button class="button" type="submit">Send request</button>
+          </div>
+        </form>
+      </div>
+    </dialog>
+
+    <script>
+      const requestModal = document.querySelector("#inspection-request-modal");
+      const requestForm = document.querySelector("#inspection-request-form");
+      const openRequestButtons = document.querySelectorAll("[data-open-request]");
+      const closeRequestButton = document.querySelector("[data-close-request]");
+
+      openRequestButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          requestModal.showModal();
+          requestForm.querySelector("input").focus();
+        });
+      });
+
+      closeRequestButton.addEventListener("click", () => {
+        requestModal.close();
+      });
+
+      requestModal.addEventListener("click", (event) => {
+        if (event.target === requestModal) {
+          requestModal.close();
+        }
+      });
+
+      requestForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(requestForm);
+        const lines = [
+          "Inspection request",
+          "",
+          `Name: ${formData.get("name")}`,
+          `Organization: ${formData.get("organization") || "N/A"}`,
+          `Email: ${formData.get("email")}`,
+          `Contact Number: ${formData.get("phone")}`,
+          "",
+          "Description:",
+          formData.get("description"),
+        ];
+
+        const subject = encodeURIComponent("Inspection Request");
+        const body = encodeURIComponent(lines.join("\n"));
+        window.location.href = `mailto:info.wiinspections@gmail.com?subject=${subject}&body=${body}`;
+      });
+    </script>
+  </body>
+</html>
